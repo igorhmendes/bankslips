@@ -45,21 +45,8 @@ Repository->>DataBase: Realiza as operações no Banco de dados
 DataBase--x Repository: Retorno da chamada.
 Repository--x Service: Retorno da chamada.
 Service--x API: Retorno da chamada..
-
 ```
 
-
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
-```
-
-Windows:
-
-```sh
-edit autoexec.bat
-```
 
 ## Exemplo de uso
 
