@@ -1,8 +1,3 @@
- <script src="./mermaid.min.js"></script>
- <link rel="stylesheet" href="./mermaid.css">
- <script>mermaid.initialize({startOnLoad:true});</script>
-
-
 
 # BankSlip
 > O projeto um API Rest para geração de boletos que será consumido por um módulo de um sistema de gestão financeira de microempresas. A API  fornece os seguintest serviços:
@@ -40,19 +35,7 @@ Para implantar a API:
 
 Diagrama de fluxo da aplicação bankslip e suas camadas:
 
-```mermaid
-sequenceDiagram
-API->> Service: Chama o serviço e aplica regras de negocios
-Note right of API: Existe uma exceção que é o fetchAll, que consome diretamente o repositório.
-Service->> Repository: Após validação chama repositório
-Note right of Service: Service é resposavel pela validacão do objeto.
-Repository->>DataBase: Realiza as operações no Banco de dados
-DataBase--x Repository: Retorno da chamada.
-Repository--x Service: Retorno da chamada.
-Service--x API: Retorno da chamada..
-
-```
-
+![](https://github.com/igorhmendes/bankslips/blob/master/sequence-flow.PNG?raw=true)
 
 ## Exemplo de uso
 
