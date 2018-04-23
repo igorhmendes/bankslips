@@ -1,3 +1,8 @@
+ <script src="./mermaid.min.js"></script>
+ <link rel="stylesheet" href="./mermaid.css">
+ <script>mermaid.initialize({startOnLoad:true});</script>
+
+
 
 # BankSlip
 > O projeto um API Rest para geração de boletos que será consumido por um módulo de um sistema de gestão financeira de microempresas. A API  fornece os seguintest serviços:
@@ -45,6 +50,7 @@ Repository->>DataBase: Realiza as operações no Banco de dados
 DataBase--x Repository: Retorno da chamada.
 Repository--x Service: Retorno da chamada.
 Service--x API: Retorno da chamada..
+
 ```
 
 
@@ -81,16 +87,7 @@ E utilize esse Json como exemplo:
     
 7.  Postman Link:  [https://www.getpostman.com/apps](https://www.getpostman.com/apps)
 
-## Histórico de lançamentos
-
-0.0.1-SNAPSHOT
-
--   Starting project.
--   Improving structure, it was added database connection, profiles and development stuffs.
--   It was added structure to handle exceptions and to validate data
--   It was implemented repository, service, rest and integrated tests.
--   It was improve code and it implemented junits tests.
-
 ## Meta
 
 Igor Mendes – igorhmendes@gmail.com
+
