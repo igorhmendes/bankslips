@@ -93,4 +93,4 @@ E utilize esse Json como exemplo:
 
 ## Meta
 
-Igor Mendes – igorhmendesl@gmail.com
+Igor Mendes – igorhmendes@gmail.com
