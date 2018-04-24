@@ -27,7 +27,7 @@ Para implantar a API:
 
 -   mkdir Bankslip
 -   git clone  [https://github.com/igorhmendes/bankslips.git](https://github.com/igorhmendes/bankslips.git)  Bankslip
--   cd Bankslip/Bankslip-rest
+-   cd Bankslip/bankslips-rest
 -   mvnw.cmd clean install
 -   java -jar target/bankslips-rest-0.0.1-SNAPSHOT.jar
 
