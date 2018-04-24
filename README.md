@@ -1,12 +1,31 @@
 
 # BankSlip
-> O projeto um API Rest para geração de boletos que será consumido por um módulo de um sistema de gestão financeira de microempresas. A API  fornece os seguintest serviços:
->* Criar boleto
->* Listar boletos
->* Listar boletos paginado
->* Ver detalhes
->* Pagar um boleto
->* Cancelar um boleto
+> O projeto é uma API Rest para geração de boletos que será consumido por um módulo de um sistema de gestão financeira de microempresas. A API  fornece os seguintes serviços e seus endpoints:
+
+- Criar boleto
+	```sh
+	Endpoint: POST http://localhost:8080/rest/bankslips
+	```
+- Listar boletos
+	```sh
+	Endpoint: GET http://localhost:8080/rest/bankslips/
+	```
+- Listar boletos paginado
+	```sh
+	Endpoint: GET http://localhost:8080/rest/bankslips/{page}/{size}
+	```
+- Ver detalhes
+	```sh
+	Endpoint: GET http://localhost:8080/rest/bankslips/{id}
+	```
+- Pagar um boleto
+	```sh
+	Endpoint: PUT http://localhost:8080/rest/bankslips/{id}/pay
+	```
+- Cancelar um boleto
+	```sh
+	Endpoint: DELETE http://localhost:8080/rest/bankslips/{id}/cancel
+	```
 >
 >A arquitetura do projeto foi desenvolvida utilizando springboot como framework base. Lombok foi outro framework utilizado para diminuir a verbosidade das classes.
 
