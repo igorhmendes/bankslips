@@ -3,6 +3,7 @@
 > O projeto um API Rest para geração de boletos que será consumido por um módulo de um sistema de gestão financeira de microempresas. A API  fornece os seguintest serviços:
 >* Criar boleto
 >* Listar boletos
+>* Listar boletos paginado
 >* Ver detalhes
 >* Pagar um boleto
 >* Cancelar um boleto
