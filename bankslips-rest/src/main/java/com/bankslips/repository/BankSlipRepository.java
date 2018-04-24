@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.bankslips.model.BankSlip;
 
 @Repository
-public interface BankslipsRepository extends JpaRepository<BankSlip, UUID> {
+public interface BankSlipRepository extends JpaRepository<BankSlip, UUID> {
 
 }

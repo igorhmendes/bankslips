@@ -12,6 +12,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.bankslips.support.handler.I18nHandler;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -24,7 +28,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 		BankslipException be = (BankslipException) ex;
 		String msg = i18n.getMessage(be.getI18nCode(), request.getLocale());
-		return new ResponseEntity<>(msg, HttpStatus.valueOf(be.getCode()));
+
+		Error error = Error.builder().code(be.getCode()).message(msg).build();
+
+		return new ResponseEntity<>(error, HttpStatus.valueOf(be.getCode()));
+	}
+
+	@Getter
+	@Setter
+	@Builder
+	static class Error {
+
+		private int code;
+		private String message;
+
 	}
 
 }

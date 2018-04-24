@@ -5,7 +5,8 @@ public enum Messages {
 	PAYMENT("api.response.payment.bankslip.success"),
 	CANCEL("api.response.cancel.bankslip.success"),
 	BANKSLIP_NOT_PROVIDER("api.response.create.bankslip.not.provide"),
-	FIELD_INVALID("api.response.create.bankslip.field.invalid");
+	FIELD_INVALID("api.response.create.bankslip.field.invalid"),
+	NOT_FOUND("api.response.detail.bankslip.not.found");
 	
 	private String code;
 	

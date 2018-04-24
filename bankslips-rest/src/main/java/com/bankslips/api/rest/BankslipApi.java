@@ -22,7 +22,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.bankslips.model.BankSlip;
 import com.bankslips.model.request.FetchRequest;
 import com.bankslips.model.response.Response;
-import com.bankslips.repository.BankslipsRepository;
+import com.bankslips.repository.BankSlipRepository;
 import com.bankslips.service.impl.BankSlipServiceImpl;
 import com.bankslips.support.handler.I18nHandler;
 import com.bankslips.support.handler.Messages;
@@ -35,7 +35,7 @@ public class BankslipApi {
 	private BankSlipServiceImpl bankSlipService;
 
 	@Autowired
-	private BankslipsRepository repository;
+	private BankSlipRepository repository;
 
 	@Autowired
 	private I18nHandler i18n;

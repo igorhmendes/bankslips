@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class I18nHandler {
+
 	@Autowired
 	private MessageSource messageSource;
 

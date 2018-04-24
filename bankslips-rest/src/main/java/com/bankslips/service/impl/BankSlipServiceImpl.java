@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bankslips.model.BankSlip;
 import com.bankslips.model.Status;
 import com.bankslips.model.request.FetchRequest;
-import com.bankslips.repository.BankslipsRepository;
+import com.bankslips.repository.BankSlipRepository;
 import com.bankslips.service.BankSlipService;
 import com.bankslips.support.exception.BankslipException;
 import com.bankslips.support.handler.Messages;
@@ -26,13 +27,16 @@ import com.bankslips.support.validation.BeanValidator;
 public class BankSlipServiceImpl implements BankSlipService {
 
 	@Autowired
-	private BankslipsRepository repository;
+	private BankSlipRepository repository;
 
 	@Autowired
 	private BeanValidator validator;
 
 	@Value("${bankslip.not.provider.code}")
 	private Integer bankSlipNotProvider;
+
+	@Value("${bankslip.not.found.code}")
+	private Integer bankSlipNotFound;
 
 	@Value("${bankslip.days.to.min.fine}")
 	private Integer daysToFine;
@@ -81,7 +85,13 @@ public class BankSlipServiceImpl implements BankSlipService {
 	@Override
 	public BankSlip fetchBankSlip(UUID bankSlipId) {
 
-		BankSlip bankSlip = repository.findById(bankSlipId).get();
+		BankSlip bankSlip;
+		try {
+			bankSlip = repository.findById(bankSlipId).get();
+		} catch (NoSuchElementException e) {
+			throw new BankslipException(bankSlipNotFound, Messages.NOT_FOUND.getCode());
+		}
+
 		CalculateFine(bankSlip);
 		return bankSlip;
 	}
@@ -98,7 +108,7 @@ public class BankSlipServiceImpl implements BankSlipService {
 
 	private void validateRequest(BankSlip bankSlip) {
 		if (bankSlip.getCustomer() == null && bankSlip.getDueDate() == null && bankSlip.getStatus() == null
-				&& bankSlip.getTotalInCents() == 0) {
+				&& bankSlip.getTotalInCents() == null) {
 			throw new BankslipException(bankSlipNotProvider, Messages.BANKSLIP_NOT_PROVIDER.getCode());
 		}
 	}
