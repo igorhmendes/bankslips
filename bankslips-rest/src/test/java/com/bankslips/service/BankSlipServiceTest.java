@@ -4,8 +4,11 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,11 +20,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bankslips.model.BankSlip;
 import com.bankslips.model.Status;
+import com.bankslips.model.request.FetchRequest;
 import com.bankslips.repository.BankSlipRepository;
 import com.bankslips.service.impl.BankSlipServiceImpl;
 import com.bankslips.support.exception.BankslipException;
@@ -61,6 +67,22 @@ public class BankSlipServiceTest {
 		}
 	}
 
+	
+	
+	@Test
+	public void fetchAllBankSlipSucessTest() {
+		
+		FetchRequest<BankSlip> request = new FetchRequest<>();
+		request.setPage(0);
+		request.setSize(20);
+		BankSlip bankSlip = newBankSlip();
+		Mockito.when(bankSlipRepository.findAll(ArgumentMatchers.any(PageRequest.class))).thenReturn(new PageImpl<>(Arrays.asList(bankSlip)));
+
+		Collection<BankSlip> list =  bankSlipService.fetchAll(request);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(bankSlip.getId(), list.iterator().next().getId());
+	}
+	
 	@Test
 	public void insertBankSlipSucessTest() {
 		bankSlipService.insert(newBankSlip());
